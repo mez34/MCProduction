@@ -1,4 +1,4 @@
- Auto generated configuration file
+#Auto generated configuration file
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
@@ -33,12 +33,13 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(options.maxEvents)
+    input = cms.untracked.int32(10)
 )
 
 # Input source
 process.source = cms.Source("LHESource",
-    fileNames = cms.untracked.vstring(options.inputFiles),
+    fileNames = cms.untracked.vstring('file:LHEFiles/2HDM/MZP600_MA0300.lhe'),
+    #fileNames = cms.untracked.vstring(options.inputFiles),
     inputCommands = cms.untracked.vstring('drop *', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -102,7 +103,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
             'MultipartonInteractions:expPow=1.6'),
         processParameters = cms.vstring('25:m0 = 125.0', 
             '25:onMode = off', 
-            '25:onIfMatch = 5 -5'),
+            '25:onIfMatch = 22 22'),
         parameterSets = cms.vstring('pythia8CommonSettings', 
 				    'pythia8CUEP8M1Settings',
 				    'processParameters'
