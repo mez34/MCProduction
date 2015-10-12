@@ -38,8 +38,9 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("LHESource",
+    fileNames = cms.untracked.vstring('file:/afs/cern.ch/user/m/mzientek/public/MZP600_MA0300.lhe'),
     #fileNames = cms.untracked.vstring('file:LHEFiles/2HDM/MZP600_MA0300.lhe'),
-    fileNames = cms.untracked.vstring(options.inputFiles),
+    #fileNames = cms.untracked.vstring(options.inputFiles),
     inputCommands = cms.untracked.vstring('drop *', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -65,7 +66,7 @@ process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.FEVTDEBUGEventContent.outputCommands,
     #fileName = cms.untracked.string(options.outputFile),
-    fileName = cms.untracked.string('output_step1.root'),
+    fileName = cms.untracked.string('file:output_step1.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('GEN-SIM')
