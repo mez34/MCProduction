@@ -44,8 +44,8 @@ process.maxEvents = cms.untracked.PSet(
 # Input source
 process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
-    fileNames = cms.untracked.vstring('file:output1.root'),
-    #fileNames = cms.untracked.vstring(options.inputFiles),
+    #fileNames = cms.untracked.vstring('file:output1.root'),
+    fileNames = cms.untracked.vstring(options.inputFiles),
     inputCommands = cms.untracked.vstring('keep *', 
         'drop *_genParticles_*_*', 
         'drop *_genParticlesForJets_*_*', 
@@ -85,7 +85,8 @@ process.FEVTDEBUGHLToutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(1048576),
-    fileName = cms.untracked.string(options.outputFile),
+    #fileName = cms.untracked.string(options.outputFile),
+    fileName = cms.untracked.string('output_step2.root'),
     outputCommands = process.FEVTDEBUGHLTEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
