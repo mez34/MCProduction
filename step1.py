@@ -38,7 +38,7 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("LHESource",
-    fileNames = cms.untracked.vstring('file:/afs/cern.ch/user/m/mzientek/public/MZP600_MA0300.lhe'),
+    fileNames = cms.untracked.vstring('file:/afs/cern.ch/user/m/mzientek/public/MZP1400_MA0300.lhe'),
     #fileNames = cms.untracked.vstring('file:LHEFiles/2HDM/MZP600_MA0300.lhe'),
     #fileNames = cms.untracked.vstring(options.inputFiles),
     inputCommands = cms.untracked.vstring('drop *', 
