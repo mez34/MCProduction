@@ -1,0 +1,5 @@
+#ignore all files that have form:
+*.pyc
+*.root
+
+crab_projects/
