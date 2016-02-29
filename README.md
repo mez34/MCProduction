@@ -2,38 +2,37 @@
 
 ////////////////////////////////////////////////////////////////////////
 
-      FOR:   miniAODv2
+      FOR: 76X miniAODv2
 
 ////////////////////////////////////////////////////////////////////////
 
-STEP1 : (in CMSSW_7_4_1)
-- cmsRun step1.py (GEN-SIM)
-- use crab_cfg_step1.py to submit via crab
-- ALWAYS check when submitting crab that the input LHE is correct in step1.py 
-(This is a bug that should be fixed at some point).   
+Convert LHE: (in CMSSW_7_1_21_patch1)
+- cmsRun EXO-convertLHE_Zp2HDM.py 
 
-STEP2 : (in CMSSW_7_4_1)
-- cmsRun step2.py 
-- use crab_cfg_step2.py to submit via crab
+GEN-SIM: (in CMSSW_7_1_21_patch1)
+- cmsRun EXO-step1GS_Zp2HDM.py 
 
-STEP3 : (in CMSSW_7_4_1_patch4) *
-- cmsRun step3_v2.py
-- use crab_cfg_step3_v2.py to submit via crab
+DIGI-RECO: (in CMSSW_7_6_1)
+- cmsRun EXO-step1DR_Zp2HDM.py
 
-STEP4 : (in CMSSW_7_4_14)
-- cmsRun step4_v2.py
-- use crab_cfg_step4_v2.py to submit via crab
+ step2: 
+- cmsRun EXO-step2DR_Zp2HDM.py
 
 
+MiniAODv2: (in CMSSW_7_6_3)
+- cmsRun EXO-miniAODv2_Zp2HDM.py
 
 ////////////////////////////////////////////////////////////////////////
 
-      FOR:   miniAODv1
+Directions came from David Sheffield:
+You can find examples of the cmsDriver.py sequences you'll need to use in the below links. 
+Now using 7_1_21_patch1 instead of 7_1_20.
 
-////////////////////////////////////////////////////////////////////////
+Convert LHE to root file https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_test/EXO-RunIIWinter15pLHE-01893 Change lhe:number for file:your.lhe
 
-STEP1 and STEP2 are the same. 
-However, STEP3 should be in CMSSW_7_4_1
-- cmsRun step3.py
-- use crab_cfg_step3.py to submit via crab 
+GEN-SIM https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_test/EXO-RunIISummer15GS-02086
+
+DIGI-RECO https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_test/EXO-RunIIFall15DR76-01651
+
+MiniAODv2 https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_test/EXO-RunIIFall15MiniAODv2-01376
 
