@@ -6,7 +6,7 @@ config.General.workArea = 'crab_projects'
 
 config.JobType.pluginName = 'PrivateMC'
 config.JobType.generator = 'lhe'
-config.JobType.psetName = 'EXO-RunIISummer15GS-02086_1_cfg.py'
+config.JobType.psetName = 'EXO-step1GS_Zp2HDM.py'
 config.JobType.inputFiles = ['/afs/cern.ch/user/m/mzientek/public/MZP600_MA0300.lhe']
 
 config.Data.outputPrimaryDataset = 'MonoHgg_Zp2HDM_MZP600_13TeV_76X'
