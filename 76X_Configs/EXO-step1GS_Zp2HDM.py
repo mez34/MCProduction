@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: Configuration/GenProduction/python/ThirteenTeV/monoHiggs/pythia8_hadronizer_nomatching_HWWllnunu_cff.py --filein dbs:/ZprimeToA0hToA0chichihWWTollnunu_2HDM_MZp-800_MA0-600_13TeV-madgraph/RunIIWinter15wmLHE-MCRUN2_71_V1-v1/LHE --fileout file:EXO-RunIISummer15GS-02086.root --mc --eventcontent RAWSIM --customise SLHCUpgradeSimulations/Configuration/postLS1Customs.customisePostLS1,Configuration/DataProcessing/Utils.addMonitoring --datatier GEN-SIM --conditions MCRUN2_71_V1::All --beamspot Realistic50ns13TeVCollision --step GEN,SIM --magField 38T_PostLS1 --python_filename EXO-RunIISummer15GS-02086_1_cfg.py --no_exec -n 67
+# with command line options: Configuration/GenProduction/python/ThirteenTeV/monoHiggs/pythia8_hadronizer_nomatching_HWWllnunu_cff.py --fileout file:EXO-RunIISummer15GS-02086.root --mc --eventcontent RAWSIM --customise SLHCUpgradeSimulations/Configuration/postLS1Customs.customisePostLS1,Configuration/DataProcessing/Utils.addMonitoring --datatier GEN-SIM --conditions MCRUN2_71_V1::All --beamspot Realistic50ns13TeVCollision --step GEN,SIM --magField 38T_PostLS1 --python_filename EXO-RunIISummer15GS-02086_1_cfg.py --no_exec -n 67 --inputEventContent=LHE --filein=file:/afs/cern.ch/user/f/fatsai/public/file_1.lhe
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('SIM')
@@ -24,15 +24,18 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(67)
 )
 
 # Input source
-process.source = cms.Source("PoolSource",
-    secondaryFileNames = cms.untracked.vstring(),
-    fileNames = cms.untracked.vstring('file:EXO-RunIIWinter15pLHE-Zp2HDM_MZP600.root'),
+process.source = cms.Source("LHESource",
+    fileNames = cms.untracked.vstring('/store/group/phys_exotica/monoHiggs/Zp2HDM/MZP600_MA0300.lhe'),
     inputCommands = cms.untracked.vstring('keep *', 
-        'drop LHEXMLStringProduct_*_*_*'),
+        'drop LHEXMLStringProduct_*_*_*', 
+        'drop *', 
+        'keep LHERunInfoProduct_*_*_*', 
+        'keep LHEEventProduct_*_*_*', 
+        'keep *_externalLHEProducer_LHEScriptOutput_*'),
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False)
 )
 
@@ -43,7 +46,7 @@ process.options = cms.untracked.PSet(
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
     version = cms.untracked.string('$Revision: 1.19 $'),
-#    annotation = cms.untracked.string('Configuration/GenProduction/python/ThirteenTeV/monoHiggs/pythia8_hadronizer_nomatching_HWWllnunu_cff.py nevts:67'),
+    #annotation = cms.untracked.string('Configuration/GenProduction/python/ThirteenTeV/monoHiggs/pythia8_hadronizer_nomatching_HWWllnunu_cff.py nevts:67'),
     annotation = cms.untracked.string('Configuration/GenProduction/python/ThirteenTeV/Hadronizer_TuneCUETP8M1_13TeV_generic_LHE_pythia8_cff.py nevts:10'),
     name = cms.untracked.string('Applications')
 )
@@ -54,7 +57,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.RAWSIMEventContent.outputCommands,
-    fileName = cms.untracked.string('file:EXO-RunIISummer15GS-Zp2HDM_MZP600.root'),
+    fileName = cms.untracked.string('file:EXO-RunIISummer15GS-test.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('GEN-SIM')
