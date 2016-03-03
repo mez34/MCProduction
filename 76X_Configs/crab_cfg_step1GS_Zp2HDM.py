@@ -15,7 +15,7 @@ config.Data.unitsPerJob = 100
 NJOBS = 500
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.publication = True
-config.Data.outputDatasetTag = 'MonoHgg_Zp2HDM_MZP600_13TeV_76X'
+config.Data.outputDatasetTag = 'MonoHgg_Zp2HDM_MZP600_13TeV_76X_step1GS'
 
 config.Site.whitelist = ['T2_CH_CERN']
 config.Site.storageSite = 'T2_CH_CERN'
